@@ -21,48 +21,48 @@
 
 3. Describe brevemente qué hace cada uno de los steps principales de tu workflow de GitHub Actions (desde el checkout hasta el push de Docker). Explica el propósito de cada uno (qué hace y para qué se hace).
 
-- **Checkout**
-   Descarga el código del repositorio en el runner para poder trabajar sobre él.
+    - **Checkout**
+    Descarga el código del repositorio en el runner para poder trabajar sobre él.
 
-- **Set up Python**
-   Configura Python 3.12 en el entorno de ejecución.
+    - **Set up Python**
+    Configura Python 3.12 en el entorno de ejecución.
 
-- **Install dependencies**
-   Actualiza pip e instala lo definido en requirements.txt; prepara el ambiente para análisis y pruebas.
+    - **Install dependencies**
+    Actualiza pip e instala lo definido en requirements.txt; prepara el ambiente para análisis y pruebas.
 
-- **Run Black**
-   Verifica formato de código sin modificar archivos. Su objetivo es forzar un estilo consistente.
+    - **Run Black**
+    Verifica formato de código sin modificar archivos. Su objetivo es forzar un estilo consistente.
 
-- **Run Pylint**
-   Analiza calidad estática del código y genera el reporte, pero sin detener el pipeline.
+    - **Run Pylint**
+    Analiza calidad estática del código y genera el reporte, pero sin detener el pipeline.
 
-- **Run Flake8**
-   Ejecuta reglas de estilo/errores y guarda el reporte, pero sin detener el pipeline.
+    - **Run Flake8**
+    Ejecuta reglas de estilo/errores y guarda el reporte, pero sin detener el pipeline.
 
 
-- **Run Unit Tests**
-   Ejecuta pruebas unitarias excluyendo la de aceptación. Valida la lógica interna de la aplicación.
+    - **Run Unit Tests**
+    Ejecuta pruebas unitarias excluyendo la de aceptación. Valida la lógica interna de la aplicación.
 
-- **Run Acceptance Tests**
-   Levanta la app con Gunicorn, y ejecuta pruebas de aceptación contra la URl de la app. Además genera reportes de cobertura y HTML para evidencia.
+    - **Run Acceptance Tests**
+    Levanta la app con Gunicorn, y ejecuta pruebas de aceptación contra la URl de la app. Además genera reportes de cobertura y HTML para evidencia.
 
-- **Upload Test Reports Artifacts**
-   Publica reportes como artefactos del workflow para revisión posterior.
+    - **Upload Test Reports Artifacts**
+    Publica reportes como artefactos del workflow para revisión posterior.
 
-- **SonarCloud Scan**
-    Envía el análisis a SonarCloud para evaluación de calidad, mantenibilidad y posibles vulnerabilidades.
+    - **SonarCloud Scan**
+        Envía el análisis a SonarCloud para evaluación de calidad, mantenibilidad y posibles vulnerabilidades.
 
-- **Set up QEMU**
-    Habilita emulación para builds multi-arquitectura de Docker cuando sea necesario.
+    - **Set up QEMU**
+        Habilita emulación para builds multi-arquitectura de Docker cuando sea necesario.
 
-- **Set up Docker Buildx**
-    Configura el builder moderno de Docker con capacidades avanzadas de cache y build.
+    - **Set up Docker Buildx**
+        Configura el builder moderno de Docker con capacidades avanzadas de cache y build.
 
-- **Login to Docker Hub**
-    Autentica contra Docker Hub con variables/secrets para poder publicar imágenes.
+    - **Login to Docker Hub**
+        Autentica contra Docker Hub con variables/secrets para poder publicar imágenes.
 
-- **Build and push Docker image**
-    Construye la imagen con Dockerfile y la publica. También usa cache de GitHub Actions para acelerar builds futuros.
+    - **Build and push Docker image**
+        Construye la imagen con Dockerfile y la publica. También usa cache de GitHub Actions para acelerar builds futuros.
 
 
 4. ¿Qué problemas o dificultades encontraste al implementar este taller? ¿Cómo los solucionaste? (Si no encontraste ningún problema, describe algo nuevo que hayas aprendido).
@@ -76,14 +76,14 @@ Además, uno de nosotros trabaja diariamente con SonarQube, pero gracias a este 
 5. ¿Qué ventajas ofrece empaquetar la aplicación en una imagen Docker al final del pipeline en lugar de simplemente validar el código?
 
 
-- **Portabilidad real**
-   La imagen incluye aplicación, dependencias y configuración base. Se ejecuta igual en diferentes entornos (local, servidor, nube).
+    - **Portabilidad real**
+    La imagen incluye aplicación, dependencias y configuración base. Se ejecuta igual en diferentes entornos (local, servidor, nube).
 
--  **Despliegue más confiable y repetible**
-   En vez de reconstruir el entorno manualmente, se despliega exactamente el mismo artefacto generado por CI.
+    -  **Despliegue más confiable y repetible**
+    En vez de reconstruir el entorno manualmente, se despliega exactamente el mismo artefacto generado por CI.
 
-- **Trazabilidad de versiones**
-   Al etiquetar con sha y latest, se puede saber qué commit está en producción y hacer rollback con mayor control.
+    - **Trazabilidad de versiones**
+    Al etiquetar con sha y latest, se puede saber qué commit está en producción y hacer rollback con mayor control.
 
-- **Menor "works on my machine"**
-   El entorno queda estandarizado dentro del contenedor, reduciendo diferencias entre máquinas de desarrollo y ejecución.
+    - **Menor "works on my machine"**
+    El entorno queda estandarizado dentro del contenedor, reduciendo diferencias entre máquinas de desarrollo y ejecución.
