@@ -1,5 +1,3 @@
-# app/calculadora.py
-
 AUTOR = "jeronimo, Esteban, Carlos, Mauricio"
 
 

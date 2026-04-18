@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request
 from .calculadora import sumar, restar, multiplicar, dividir
 
-# app/app.py
-
 app = Flask(__name__)
 
 
@@ -10,24 +8,6 @@ app = Flask(__name__)
 def index():
     """
     Maneja la ruta principal de la aplicación web.
-
-    Soporta métodos GET y POST:
-    - GET: Renderiza la página inicial sin resultado.
-    - POST: Procesa los datos enviados desde el formulario para realizar
-      una operación matemática básica.
-
-    Parámetros esperados en el formulario (request.form):
-    - num1 (str): Primer número, convertible a float.
-    - num2 (str): Segundo número, convertible a float.
-    - operacion (str): Tipo de operación a realizar. Puede ser:
-        - "sumar"
-        - "restar"
-        - "multiplicar"
-        - "dividir"
-
-    Retorna:
-        Response: Renderiza la plantilla 'index.html' con el resultado de la operación
-        o un mensaje de error si ocurre alguna excepción.
     """
     resultado = None
     if request.method == "POST":
