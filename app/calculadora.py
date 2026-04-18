@@ -1,3 +1,7 @@
+"""
+Funciones de la calculadora.
+"""
+
 AUTOR = "jeronimo, Esteban, Carlos, Mauricio"
 
 

@@ -1,3 +1,7 @@
+"""
+Módulo de operaciones matemáticas y rutas principal.
+"""
+
 from flask import Flask, render_template, request
 from .calculadora import sumar, restar, multiplicar, dividir
 
